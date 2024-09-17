@@ -9,10 +9,10 @@ class ContentService{
 
     async createContent(text){
         if(!text){
-            throw new Error('Texti tido em branco, calma ai n funciona');
+            throw new Error('Texto em branco, calma ai não funciona');
         }
         if(text.lenght > 300){
-            throw new Error('texto ta grande amigao, reduz isso dai');
+            throw new Error('texto ta grande amigão, reduz isso dai');
         } 
         if(contationsSpecialCharacters(text)){
             throw new Error('O texto e especial')
