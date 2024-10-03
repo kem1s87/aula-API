@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const userRep = require('../repositories/userRep');
 
-const SECRET_KEY = 'SUA_MÃE_EXTREMAMENTE_SECRETA';
+const SECRET_KEY = 'SECRET_KEY_UP';
 
 class UserService {
     async register(username, password){
