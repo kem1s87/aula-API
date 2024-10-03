@@ -15,7 +15,7 @@ class ContentService{
             throw new Error('texto ta grande amigão, reduz isso dai');
         } 
         if(contationsSpecialCharacters(text)){
-            throw new Error('O texto e especial')
+            throw new Error('O texto é especial')
         }
 
 
