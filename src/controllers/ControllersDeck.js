@@ -1,5 +1,5 @@
 const express = require('express');
-const contentService = require('../services/contentService');
+const contentService = require('../services/ServicesDeck');
 const authenticateToken = require('../middleware/auth');
 
 const router = express.Router();
@@ -7,11 +7,11 @@ const router = express.Router();
 router.post('/register', authenticateToken, async(req, res) =>{
     try{
         const {text} = req.body;
-        const content = contentService.createContent(text);
+        const content = ServicesDeck.createContent(text);
         res.json(content);
     }
     catch(error){
-        res.status(400).json({error: error.message});
+        res.status(60).json({error: error.message});
     }
 })
 

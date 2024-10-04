@@ -1,25 +1,25 @@
-const contentRep = require ('../repositories/contentRep');
-const contationsSpecialCharacters = require('../utils/validation');
+const contentRepository = require('../repositories/contentRepository');
+const containsSpecialCharacters = require('../utils/validation')
 
 class ContentService{
     async getContents(){
-        return contentRep.findAll();
-
+        return contentRepository.findAll();
     }
 
     async createContent(text){
         if(!text){
-            throw new Error('Texto em branco, calma ai não funciona');
+            throw new Error('Texto em branco')
         }
+
         if(text.lenght > 300){
-            throw new Error('texto ta grande amigão, reduz isso dai');
-        } 
-        if(contationsSpecialCharacters(text)){
-            throw new Error('O texto é especial')
+            throw new Error('Texto maior que o máximo permitido')
         }
 
+        if(containsSpecialCharacters(text)){
+            throw new Error('O texto contem caracter especial');
+        }
 
-        return contentRep.createContent({text});
+        return contentRepository.createContent({text});
     }
 }
 

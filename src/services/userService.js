@@ -1,38 +1,34 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const userRep = require('../repositories/userRep');
+const userRepository = require('../repositories/userRepository');
 
-const SECRET_KEY = 'SECRET_KEY_UP';
+const SECRET_KEY = 'sua_chave_secreta';
 
 class UserService {
     async register(username, password){
         const hashedPassword = await bcrypt.hash(password, 10);
-        const user = await userRep.createUser({ username, password: hashedPassword});
+        const user = await userRepository.createUser({ username, password: hashedPassword });
         return user;
-
     }
 
     async login(username, password){
-        const user = await userRep.findByUserName(username);
+        const user = await userRepository.findByUserName(username);
         if(!user){
-            throw new Error('User not found');
+            throw new Error('Usuário não encontrado');
         }
 
-        const isPasswordValid = await bcrypt.compare(password,user.password);
+        const isPasswordValid = await bcrypt.compare(password, user.password);
         if(!isPasswordValid){
-            throw new Error('invalid password')
-
+            throw new Error('Senha inválida');
         }
 
-        const token = jwt.sign({id: user.id}, SECRET_KEY,{expiresIn: '1h'});
+        const token = jwt.sign({id: user.id}, SECRET_KEY, {expiresIn: '1h'});
         return token;
-
     }
 
     async getUsers(){
-        return userRep.findAll();
+        return userRepository.findAll();
     }
-
 }
 
 module.exports = new UserService();

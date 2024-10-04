@@ -1,14 +1,15 @@
 const jwt = require('jsonwebtoken');
-const SECRET_KEY = 'SECRET_KEY_UP';
+const SECRET_KEY = 'sua_chave_secreta';
 
 function authenticateToken(req, res, next){
-    const authHeader = req.headers['autorization'];
+    const authHeader = req.headers['authorization'];
+
     if(!authHeader)
     {
         return res.sendStatus(401);
     }
 
-    jwt.verify(authHeader, SECRET_KEY, (err, user)=>{
+    jwt.verify(authHeader, SECRET_KEY, (err, user) =>{
         if(err){
             return res.sendStatus(403);
         }
@@ -17,4 +18,4 @@ function authenticateToken(req, res, next){
     })
 }
 
-module.exports = authenticateToken
+module.exports = authenticateToken;
