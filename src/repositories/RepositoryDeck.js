@@ -1,7 +1,9 @@
-const Deck = require('../models/Decks')
+const Deck = require('../models/Decks');
 
-class ContentRepository{
-    async createDeck(content){
-        return await Deck.create(Deck);
+class ContentRepository {
+    async createDeck(content) {
+        return await Deck.create(content);
     }
 }
+
+module.exports = new ContentRepository(); 
